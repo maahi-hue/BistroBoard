@@ -1,9 +1,37 @@
+import { useContext } from "react";
+import { authContext } from "../AuthProvider/AuthProvider";
 const AddFood = () => {
+  const { user } = useContext(authContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const image = form.image.value;
+    const name = form.name.value;
+    const category = form.category.value;
+    const quantity = form.quantity.value;
+    const origin = form.origin.value;
+    const description = form.description.value;
+    const price = parseFloat(form.price.value);
+    const userEmail = user.email;
+    const userName = user.displayName || user.email.split("@")[0];
+
+    const formData = {
+      image,
+      name,
+      category,
+      quantity,
+      origin,
+      description,
+      price,
+      userEmail,
+      userName,
+    };
+  };
   return (
     <div className="w-11/12 mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">Add Foods</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="md:flex gap-6 w-10/12 mx-auto">
           <div className="space-y-3 w-full">
             <label className="input input-bordered flex items-center gap-2">
@@ -68,6 +96,7 @@ const AddFood = () => {
               <input
                 type="email"
                 name="userEmail"
+                value={user?.email}
                 className="grow bg-gray-200"
                 readOnly
               />
@@ -77,6 +106,7 @@ const AddFood = () => {
               <input
                 type="text"
                 name="userName"
+                value={user?.displayName || user?.email.split("@")[0]}
                 className="grow bg-gray-200"
                 readOnly
               />
