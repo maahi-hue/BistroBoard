@@ -1,11 +1,13 @@
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
 
 const FoodPurchase = () => {
   const { user } = useContext(authContext);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [food, setFood] = useState(null);
   const [formData, setFormData] = useState({
     foodName: "",
@@ -14,6 +16,7 @@ const FoodPurchase = () => {
   });
   const [loading, setLoading] = useState(false);
 
+  // Fetch food details
   useEffect(() => {
     fetchFoodDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,16 +78,22 @@ const FoodPurchase = () => {
         `${import.meta.env.VITE_API_URL}/addOrder`,
         purchaseData
       );
-      console.log("Purchase response:", response);
-      alert("Purchase successful!");
-      setFormData({
-        foodName: food.name || "",
-        price: food.price / food.quantity || 0,
-        quantity: 1,
+      Swal.fire({
+        icon: "success",
+        title: "Purchase Successful!",
+        text: "Your order has been placed successfully.",
+        confirmButtonText: "Go to My Orders",
+      }).then(() => {
+        navigate("/myOrders");
       });
+      console.log(response);
     } catch (error) {
       console.error("Error while purchasing food:", error);
-      alert("Failed to complete the purchase.");
+      Swal.fire({
+        icon: "error",
+        title: "Purchase Failed",
+        text: "We encountered an issue while processing your purchase. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -195,7 +204,7 @@ const FoodPurchase = () => {
                 className={`px-8 py-2.5 leading-5 text-white transition-colors duration-300 rounded-md focus:outline-none ${
                   food.quantity === 0
                     ? "bg-gray-300 cursor-not-allowed opacity-50"
-                    : "bg-gray-700 hover:bg-gray-600 focus:bg-gray-600 cursor-pointer"
+                    : "bg-green-600 hover:bg-green-500 focus:bg-green-500 cursor-pointer"
                 }`}
               >
                 {loading ? "Processing..." : "Purchase"}
