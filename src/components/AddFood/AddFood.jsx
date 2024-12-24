@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
+import axios from "axios";
 const AddFood = () => {
   const { user } = useContext(authContext);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const image = form.image.value;
@@ -26,6 +27,12 @@ const AddFood = () => {
       userEmail,
       userName,
     };
+    // post-request
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/addFood`,
+      formData
+    );
+    console.log(data);
   };
   return (
     <div className="w-11/12 mx-auto p-6">
@@ -126,7 +133,7 @@ const AddFood = () => {
         </div>
         <input
           type="submit"
-          value="Add Equipment"
+          value="Add Food"
           className="btn my-6 block mx-auto w-10/12 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold"
         />
       </form>
