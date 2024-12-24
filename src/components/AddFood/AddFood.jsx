@@ -27,6 +27,7 @@ const AddFood = () => {
       price,
       userEmail,
       userName,
+      purchase_count: 0,
     };
     // post-request
     try {

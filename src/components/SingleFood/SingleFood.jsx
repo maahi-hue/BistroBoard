@@ -73,7 +73,7 @@ const SingleFood = () => {
             <strong>Description:</strong> {food.description}
           </p>
           <p>
-            <strong>Purchase Count:</strong> {food.purchaseCount || 0}
+            <strong>Purchase Count:</strong> {food.purchase_count || 0}
           </p>
         </div>
         <button

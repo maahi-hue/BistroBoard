@@ -13,10 +13,10 @@ const FoodPurchase = () => {
     foodName: "",
     price: "",
     quantity: 1,
+    buyingDate: new Date().toLocaleString(),
   });
   const [loading, setLoading] = useState(false);
 
-  // Fetch food details
   useEffect(() => {
     fetchFoodDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,11 +31,12 @@ const FoodPurchase = () => {
 
       const unitPrice = data.price / data.quantity || 0;
 
-      setFormData({
+      setFormData((prev) => ({
+        ...prev,
         foodName: data.name || "",
         price: unitPrice,
         quantity: data.quantity > 0 ? 1 : 0,
-      });
+      }));
     } catch (error) {
       console.error("Failed to fetch food details:", error);
     }
@@ -68,9 +69,10 @@ const FoodPurchase = () => {
 
     const purchaseData = {
       ...formData,
+      foodId: id,
       buyerName: user?.displayName || user?.email.split("@")[0],
       buyerEmail: user?.email || "",
-      buyingDate: Date.now(),
+      buyingDate: new Date().toISOString(),
     };
 
     try {
@@ -191,6 +193,20 @@ const FoodPurchase = () => {
                   name="buyerEmail"
                   value={user?.email || ""}
                   type="email"
+                  disabled
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-200 rounded-md focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-gray-700" htmlFor="buyingDate">
+                  Buying Date
+                </label>
+                <input
+                  id="buyingDate"
+                  name="buyingDate"
+                  value={formData.buyingDate}
+                  type="text"
                   disabled
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-200 rounded-md focus:outline-none"
                 />
