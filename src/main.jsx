@@ -13,6 +13,7 @@ import MyFoods from "./components/MyFoods/MyFoods.jsx";
 import MyOrders from "./components/MyOrders/MyOrders.jsx";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
+import UpdateFood from "./components/UpdateFood/UpdateFood.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/myOrders",
         element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/update/:id",
+        element: <UpdateFood></UpdateFood>,
       },
       {
         path: "/login",

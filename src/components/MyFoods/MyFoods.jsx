@@ -2,29 +2,48 @@ import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const MyFoods = () => {
   const { user } = useContext(authContext);
+  const [id, setId] = useState(null);
   const [foods, setFoods] = useState([]);
+
   useEffect(() => {
     fetchAllFoods();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
   const fetchAllFoods = async () => {
-    const { data } = await axios.get(
-      `${import.meta.env.VITE_API_URL}/foods/${user?.email}`
-    );
-    setFoods(data);
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/foods/${user?.email}`
+      );
+      setFoods(data);
+    } catch (err) {
+      console.error("Error fetching foods:", err);
+    }
   };
 
-  const handleDelete = (id) => {};
+  const handleDelete = async () => {
+    if (!id) return;
+
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/food/${id}`);
+      Swal.fire("Deleted!", "The food item has been deleted.", "success");
+      fetchAllFoods();
+      setId(null);
+    } catch (err) {
+      console.error("Error deleting food:", err);
+      Swal.fire("Error", "Could not delete the food item.", "error");
+    }
+  };
 
   return (
     <section className="container px-4 mx-auto pt-12">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800 ">My Posted Jobs</h2>
-
-        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
+        <h2 className="text-lg font-medium text-gray-800">My Posted Foods</h2>
+        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
           {foods.length} Foods
         </span>
       </div>
@@ -32,76 +51,47 @@ const MyFoods = () => {
       <div className="flex flex-col mt-6">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200  md:rounded-lg">
+            <div className="overflow-hidden border border-gray-200 md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th
-                      scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      <div className="flex items-center gap-x-3">
-                        <span>Food Name</span>
-                      </div>
+                    <th className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">
+                      Food Name
                     </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      <span>Food Category</span>
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                      Food Category
                     </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      <button className="flex items-center gap-x-2">
-                        <span>Price</span>
-                      </button>
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                      Price
                     </th>
-
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
-                    >
-                      quantity
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                      Quantity
                     </th>
-
-                    <th className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      Edit
+                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                      Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 ">
+                <tbody className="bg-white divide-y divide-gray-200">
                   {foods.map((food) => (
                     <tr key={food._id}>
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {food.name}
                       </td>
-
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {food.category}
                       </td>
-
-                      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {food.price} TK
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          <p
-                            className={`px-3 py-1  text-blue-500 bg-blue-100/60 text-xs  rounded-full`}
-                          >
-                            {food.quantity}
-                          </p>
-                        </div>
+                        {food.quantity}
                       </td>
-
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
                           <button
-                            onClick={() => handleDelete(food._id)}
-                            className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
+                            onClick={() => setId(food._id)}
+                            className="text-gray-500 hover:text-red-500 focus:outline-none"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -120,8 +110,8 @@ const MyFoods = () => {
                           </button>
 
                           <Link
-                            to={`/update/1`}
-                            className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
+                            to={`/update/${food._id}`}
+                            className="text-gray-500 hover:text-yellow-500 focus:outline-none"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -148,6 +138,28 @@ const MyFoods = () => {
           </div>
         </div>
       </div>
+      {id && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg">
+            <h2 className="text-xl font-bold mb-4">Confirm Delete</h2>
+            <p>Are you sure you want to delete this item?</p>
+            <div className="mt-4 flex justify-end gap-4">
+              <button
+                className="btn hover:bg-[#354f52] hover:text-[#cad2c5] font-bold"
+                onClick={() => setId(null)}
+              >
+                Cancel
+              </button>
+              <button
+                className="btn hover:bg-[#354f52] hover:text-[#cad2c5] font-bold"
+                onClick={handleDelete}
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
