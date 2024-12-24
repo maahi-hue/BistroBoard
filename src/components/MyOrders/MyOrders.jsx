@@ -42,7 +42,7 @@ const MyOrders = () => {
     if (!id) return;
 
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/food/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/order/${id}`);
       Swal.fire("Deleted!", "The order has been deleted.", "success");
       fetchAllOrders();
       setId(null);
