@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
 const AddFood = () => {
   const { user } = useContext(authContext);
   const handleSubmit = async (e) => {
@@ -28,11 +29,26 @@ const AddFood = () => {
       userName,
     };
     // post-request
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/addFood`,
-      formData
-    );
-    console.log(data);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/addFood`, formData);
+      // Success alert after food is added
+      Swal.fire({
+        icon: "success",
+        title: "Food Added Successfully",
+        text: "The food item has been successfully added to the menu!",
+        confirmButtonText: "OK",
+      });
+      form.reset();
+    } catch (err) {
+      console.log(err);
+      // Error alert
+      Swal.fire({
+        icon: "error",
+        title: "Failed to Add Food",
+        text: "There was an issue while adding the food item. Please try again.",
+        confirmButtonText: "OK",
+      });
+    }
   };
   return (
     <div className="w-11/12 mx-auto p-6">
