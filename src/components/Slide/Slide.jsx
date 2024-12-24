@@ -15,7 +15,7 @@ const Slide = ({ image, header, description }) => {
           <p className="mt-4 text-lg lg:text-xl">{description}</p>
           <br />
           <Link
-            to="/add-job"
+            to="/AllFoods"
             className="w-full px-5 py-4 mt-4 text-sm text-black font-bold hover:bg-[#354f52] hover:text-[#cad2c5] capitalize transition-colors duration-300 transform rounded-md lg:w-auto bg-white"
           >
             All Foods

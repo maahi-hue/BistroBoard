@@ -14,6 +14,7 @@ import MyOrders from "./components/MyOrders/MyOrders.jsx";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import UpdateFood from "./components/UpdateFood/UpdateFood.jsx";
+import SingleFood from "./components/SingleFood/SingleFood.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         path: "/myFoods",
         element: <MyFoods></MyFoods>,
       },
+      {
+        path: "/food/:id",
+        element: <SingleFood></SingleFood>,
+      },
+      // {
+      //   path: "/purchase/:id",
+      //   element: <FoodPurchase></FoodPurchase>,
+      // },
       {
         path: "/myOrders",
         element: <MyOrders></MyOrders>,
