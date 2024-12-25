@@ -5,7 +5,7 @@ const FoodCard = ({ food }) => {
   const { _id, name, category, quantity, origin, description, price } =
     food || {};
   return (
-    <div className="w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all">
+    <div className="w-full max-w-sm px-4 py-3 rounded-md shadow-md hover:scale-[1.05] transition-all">
       <div className="flex items-center justify-between">
         <span className="px-3 py-1 text-[8px] text-blue-800 uppercase bg-blue-200 rounded-full">
           {category}

@@ -54,7 +54,7 @@ const MyOrders = () => {
   return (
     <section className="container px-4 mx-auto my-12">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800">My Orders</h2>
+        <h2 className="text-xl font-semibold">My Orders</h2>
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
           {orders.length} orders
         </span>
@@ -65,7 +65,7 @@ const MyOrders = () => {
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200 md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead>
                   <tr>
                     <th className="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase">
                       Name

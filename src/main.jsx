@@ -17,6 +17,7 @@ import UpdateFood from "./components/UpdateFood/UpdateFood.jsx";
 import SingleFood from "./components/SingleFood/SingleFood.jsx";
 import FoodPurchase from "./components/FoodPurchase/FoodPurchase.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
+import ThemeProvider from "./components/ThemeProvider/ThemeProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -90,8 +91,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
+    </ThemeProvider>
   </StrictMode>
 );

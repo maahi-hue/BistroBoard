@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, loading, handleLogout } = useContext(authContext);
@@ -80,6 +81,7 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">BistroBoard</a>
+        <ThemeToggle></ThemeToggle>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-2">
@@ -139,7 +141,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="text-black menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="font-semibold text-[#42535b] menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <Link to="/myFoods" className="justify-between">

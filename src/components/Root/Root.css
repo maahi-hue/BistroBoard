@@ -1,0 +1,18 @@
+/* index.css */
+:root {
+  --bg-primary: #cad2c5;
+  --bg-secondary: white;
+  --text-color: black;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1b4332;
+  --bg-secondary: black;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
