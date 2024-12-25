@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
+import useAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const FoodPurchase = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,9 +25,7 @@ const FoodPurchase = () => {
 
   const fetchFoodDetails = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/food/${id}`
-      );
+      const { data } = await axiosSecure.get(`/food/${id}`);
       setFood(data);
 
       const unitPrice = data.price / data.quantity || 0;
@@ -76,10 +75,7 @@ const FoodPurchase = () => {
     };
 
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/addOrder`,
-        purchaseData
-      );
+      const response = await axiosSecure.post(`/addOrder`, purchaseData);
       Swal.fire({
         icon: "success",
         title: "Purchase Successful!",

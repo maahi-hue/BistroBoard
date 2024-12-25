@@ -16,6 +16,7 @@ import Register from "./components/Register/Register.jsx";
 import UpdateFood from "./components/UpdateFood/UpdateFood.jsx";
 import SingleFood from "./components/SingleFood/SingleFood.jsx";
 import FoodPurchase from "./components/FoodPurchase/FoodPurchase.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/AddFood",
-        element: <AddFood></AddFood>,
+        element: (
+          <PrivateRoute>
+            <AddFood></AddFood>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/AllFoods",
@@ -41,7 +46,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/myFoods",
-        element: <MyFoods></MyFoods>,
+        element: (
+          <PrivateRoute>
+            <MyFoods></MyFoods>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/food/:id",
@@ -49,11 +58,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/purchase/:id",
-        element: <FoodPurchase></FoodPurchase>,
+        element: (
+          <PrivateRoute>
+            <FoodPurchase></FoodPurchase>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myOrders",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update/:id",
