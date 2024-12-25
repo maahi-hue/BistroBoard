@@ -7,24 +7,18 @@ const TopSellingFoods = () => {
   const [topFoods, setTopFoods] = useState([]);
 
   useEffect(() => {
+    const fetchTopSellingFoods = async () => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/foods`
+        );
+        setTopFoods(data); // Backend already handles sorting and limiting
+      } catch (error) {
+        console.error("Error fetching top foods:", error);
+      }
+    };
     fetchTopSellingFoods();
   }, []);
-
-  const fetchTopSellingFoods = async () => {
-    try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foods`);
-      const sortedFoods = data.sort(
-        (a, b) => b.purchaseCount - a.purchaseCount
-      );
-
-      // Get the top 6 items
-      const topSixFoods = sortedFoods.slice(0, 6);
-
-      setTopFoods(topSixFoods);
-    } catch (error) {
-      console.error("Error fetching top foods:", error);
-    }
-  };
 
   return (
     <div className="container px-6 py-10 mx-auto">
@@ -34,7 +28,7 @@ const TopSellingFoods = () => {
       <p className="max-w-2xl mx-auto my-6 text-center text-gray-500">
         These are the most popular foods based on the number of purchases.
       </p>
-      <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3">
         {topFoods.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
