@@ -1,12 +1,13 @@
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const UpdateFood = () => {
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-  const { id } = useParams(); // Get the dynamic ID from URL
+  const { id } = useParams();
   const { user } = useContext(authContext);
   const [food, setFood] = useState({});
 
@@ -17,9 +18,7 @@ const UpdateFood = () => {
 
   const fetchFoodData = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/food/${id}`
-      );
+      const { data } = await axiosSecure.get(`/food/${id}`);
       setFood(data);
     } catch (err) {
       console.log(err);
@@ -51,10 +50,7 @@ const UpdateFood = () => {
     };
     // post-request
     try {
-      await axios.put(
-        `${import.meta.env.VITE_API_URL}/updateFood/${id}`,
-        formData
-      );
+      await axiosSecure.put(`/updateFood/${id}`, formData);
       // Success alert after food is added
       Swal.fire({
         icon: "success",

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/UseAxiosSecure";
 const AddFood = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +32,7 @@ const AddFood = () => {
     };
     // post-request
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/addFood`, formData);
+      await axiosSecure.post(`/addFood`, formData);
       // Success alert after food is added
       Swal.fire({
         icon: "success",

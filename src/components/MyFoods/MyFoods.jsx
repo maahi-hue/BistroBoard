@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const MyFoods = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   const [id, setId] = useState(null);
   const [foods, setFoods] = useState([]);
@@ -16,9 +17,7 @@ const MyFoods = () => {
 
   const fetchAllFoods = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/foods/${user?.email}`
-      );
+      const { data } = await axiosSecure.get(`/foods/${user?.email}`);
       setFoods(data);
     } catch (err) {
       console.error("Error fetching foods:", err);
@@ -29,7 +28,7 @@ const MyFoods = () => {
     if (!id) return;
 
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/food/${id}`);
+      await axiosSecure.delete(`/food/${id}`);
       Swal.fire("Deleted!", "The food item has been deleted.", "success");
       fetchAllFoods();
       setId(null);

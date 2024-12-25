@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
-import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
+import useAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const MyOrders = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   const [orders, setOrders] = useState([]);
   const [id, setId] = useState(null);
@@ -16,9 +17,7 @@ const MyOrders = () => {
 
   const fetchAllOrders = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/orders/${user?.email}`
-      );
+      const { data } = await axiosSecure.get(`/orders/${user?.email}`);
       console.log("Fetched orders:", data);
 
       const formattedData = data.map((order) => ({
@@ -42,7 +41,7 @@ const MyOrders = () => {
     if (!id) return;
 
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/order/${id}`);
+      await axiosSecure.delete(`/order/${id}`);
       Swal.fire("Deleted!", "The order has been deleted.", "success");
       fetchAllOrders();
       setId(null);

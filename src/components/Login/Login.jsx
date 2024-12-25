@@ -33,25 +33,31 @@ const Login = () => {
       });
   };
 
-  const googleLoginHandler = () => {
-    handleGoogleLogin()
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Login Successful!",
-          timer: 2000,
-          showConfirmButton: false,
-        });
-        navigate(location.state?.from || "/");
-      })
-      .catch((err) => {
-        const errorMessage = err.message || "An error occurred during login.";
-        Swal.fire({
-          icon: "error",
-          title: "Login Failed",
-          text: errorMessage,
-        });
+  const googleLoginHandler = async () => {
+    try {
+      await handleGoogleLogin();
+
+      // Success notification
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful!",
+        timer: 2000,
+        showConfirmButton: false,
       });
+
+      // Navigate to previous or home
+      navigate(location.state?.from || "/");
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.message ||
+        err.message ||
+        "An error occurred during login.";
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: errorMessage,
+      });
+    }
   };
 
   return (

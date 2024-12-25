@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const SingleFood = () => {
+  const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const navigate = useNavigate();
   const [food, setFood] = useState(null);
@@ -15,9 +16,7 @@ const SingleFood = () => {
 
   const fetchFoodDetails = async () => {
     try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/food/${id}`
-      );
+      const { data } = await axiosSecure.get(`/food/${id}`);
       setFood(data);
     } catch (error) {
       console.error("Failed to fetch food details:", error);
