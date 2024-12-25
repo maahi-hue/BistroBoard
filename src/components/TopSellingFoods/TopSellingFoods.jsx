@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import FoodCard from "../FoodCard/FoodCard";
+import { Link } from "react-router-dom";
 
 const TopSellingFoods = () => {
   const [topFoods, setTopFoods] = useState([]);
@@ -13,7 +14,7 @@ const TopSellingFoods = () => {
         );
         setTopFoods(data);
       } catch (error) {
-        console.error("Error fetching top foods:", error);
+        // console.error("Error fetching top foods:", error);
       }
     };
     fetchTopSellingFoods();
@@ -32,6 +33,12 @@ const TopSellingFoods = () => {
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
       </div>
+      <Link
+        to={`/AllFoods`}
+        className="px-4 py-2 mt-4 mx-auto flex w-48 btn hover:bg-[#354f52] hover:text-[#cad2c5] font-bold"
+      >
+        Sea All
+      </Link>
     </div>
   );
 };

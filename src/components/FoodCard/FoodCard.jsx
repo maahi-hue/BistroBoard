@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 const FoodCard = ({ food }) => {
-  const { _id, name, category, quantity, origin, description, price } =
+  const { _id, name, category, quantity, origin, description, price, image } =
     food || {};
   return (
     <div className="border border-gray-500 w-full max-w-sm px-4 py-3 rounded-md shadow-md hover:scale-[1.05] transition-all">
@@ -15,12 +15,18 @@ const FoodCard = ({ food }) => {
         </span>
       </div>
 
-      <div>
-        <h1 className="mt-2 text-lg font-semibold">{name}</h1>
+      <div className="flex gap-2">
+        <div>
+          <h1 className="mt-2 text-lg font-semibold">{name}</h1>
 
-        <p className="mt-2 text-sm ">{description}</p>
-        <p className="mt-2 text-sm font-bold ">Quantity: {quantity}</p>
-        <p className="mt-2 text-sm font-bold ">{price} TK</p>
+          <p className="mt-2 text-sm ">{description}</p>
+          <p className="mt-2 text-sm font-bold ">Quantity: {quantity}</p>
+          <p className="mt-2 text-sm font-bold ">{price} TK</p>
+        </div>
+        <div
+          className=" mt-4 h-20 w-32 bg-cover bg-center rounded-full mx-auto mb-4 flex items-center justify-center transition duration-300 transform hover:scale-110"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
       </div>
       <div className="mt-4">
         <Link

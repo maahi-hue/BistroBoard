@@ -20,7 +20,7 @@ const MyFoods = () => {
       const { data } = await axiosSecure.get(`/foods/${user?.email}`);
       setFoods(data);
     } catch (err) {
-      console.error("Error fetching foods:", err);
+      // console.error("Error fetching foods:", err);
     }
   };
 
@@ -33,7 +33,7 @@ const MyFoods = () => {
       fetchAllFoods();
       setId(null);
     } catch (err) {
-      console.error("Error deleting food:", err);
+      // console.error("Error deleting food:", err);
       Swal.fire("Error", "Could not delete the food item.", "error");
     }
   };

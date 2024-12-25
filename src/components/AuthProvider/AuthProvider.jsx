@@ -19,14 +19,17 @@ const AuthProvider = ({ children }) => {
   const GoogleProvider = new GoogleAuthProvider();
 
   const handleRegister = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const handleLogin = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const handleGoogleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, GoogleProvider);
   };
 
@@ -35,7 +38,7 @@ const AuthProvider = ({ children }) => {
       await signOut(auth);
       setUser(null);
     } catch (error) {
-      console.error("Error during logout:", error);
+      // console.error("Error during logout:", error);
     }
   };
 
@@ -50,7 +53,7 @@ const AuthProvider = ({ children }) => {
           },
           { withCredentials: true }
         );
-        console.log(data);
+        // console.log(data);
       } else {
         setUser(currentUser);
         const { data } = await axios.get(

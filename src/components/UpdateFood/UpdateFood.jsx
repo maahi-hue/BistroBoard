@@ -21,7 +21,7 @@ const UpdateFood = () => {
       const { data } = await axiosSecure.get(`/food/${id}`);
       setFood(data);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   const handleSubmit = async (e) => {
@@ -61,7 +61,7 @@ const UpdateFood = () => {
       form.reset();
       navigate("/myFoods");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       // Error alert
       Swal.fire({
         icon: "error",

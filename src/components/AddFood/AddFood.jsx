@@ -42,7 +42,6 @@ const AddFood = () => {
       });
       form.reset();
     } catch (err) {
-      console.log(err);
       // Error alert
       Swal.fire({
         icon: "error",

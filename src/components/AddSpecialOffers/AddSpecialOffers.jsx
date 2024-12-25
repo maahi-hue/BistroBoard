@@ -40,7 +40,6 @@ const AddSpecialOffers = () => {
       });
       form.reset();
     } catch (err) {
-      console.error(err);
       Swal.fire({
         icon: "error",
         title: "Failed to Add Offer",
@@ -110,17 +109,6 @@ const AddSpecialOffers = () => {
               name="discountedPrice"
               className="input input-bordered w-full mt-1 rounded-md"
               placeholder="12.99"
-              required
-            />
-          </label>
-
-          <label className="block">
-            <span className="">Image URL</span>
-            <input
-              type="url"
-              name="image"
-              className="input input-bordered w-full mt-1 rounded-md"
-              placeholder="https://example.com/image.jpg"
               required
             />
           </label>

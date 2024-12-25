@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { authContext } from "../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../hooks/UseAxiosSecure";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const FoodPurchase = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,7 +38,7 @@ const FoodPurchase = () => {
         quantity: data.quantity > 0 ? 1 : 0,
       }));
     } catch (error) {
-      console.error("Failed to fetch food details:", error);
+      // console.error("Failed to fetch food details:", error);
     }
   };
 
@@ -84,9 +85,9 @@ const FoodPurchase = () => {
       }).then(() => {
         navigate("/myOrders");
       });
-      console.log(response);
+      // console.log(response);
     } catch (error) {
-      console.error("Error while purchasing food:", error);
+      // console.error("Error while purchasing food:", error);
       Swal.fire({
         icon: "error",
         title: "Purchase Failed",
@@ -100,7 +101,7 @@ const FoodPurchase = () => {
   if (!food) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <p>Loading food details...</p>
+        if (loading) return <LoadingSpinner />
       </div>
     );
   }

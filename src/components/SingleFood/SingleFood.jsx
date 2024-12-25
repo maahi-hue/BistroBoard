@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/UseAxiosSecure";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const SingleFood = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,7 +20,7 @@ const SingleFood = () => {
       const { data } = await axiosSecure.get(`/food/${id}`);
       setFood(data);
     } catch (error) {
-      console.error("Failed to fetch food details:", error);
+      // console.error("Failed to fetch food details:", error);
     } finally {
       setLoading(false);
     }
@@ -29,13 +30,7 @@ const SingleFood = () => {
     navigate(`/purchase/${id}`);
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p>Loading food details...</p>
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   if (!food) {
     return (

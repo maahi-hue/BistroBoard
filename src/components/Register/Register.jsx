@@ -67,7 +67,7 @@ const Register = () => {
       });
       navigate("/login");
     } catch (err) {
-      console.error("Registration error:", err.message);
+      // console.error("Registration error:", err.message);
       Swal.fire({
         icon: "error",
         title: "Registration Failed",

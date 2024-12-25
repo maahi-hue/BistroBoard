@@ -2,20 +2,15 @@ import { useContext } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const Navbar = () => {
   const { user, loading, handleLogout } = useContext(authContext);
 
-  if (loading) {
-    return (
-      <div className="navbar bg-[#c4bbaf]">
-        <div className="navbar-center">Loading...</div>
-      </div>
-    );
-  }
+  if (loading) return <LoadingSpinner />;
 
   return (
-    <div className="navbar bg-[#2f3e46] text-white">
+    <div className="navbar bg-[#2f3e46] ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,7 +31,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="space-x-2 menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="space-x-2 menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
             <NavLink
               to="/"
@@ -59,16 +54,6 @@ const Navbar = () => {
               All Foods
             </NavLink>
             <NavLink
-              to="/AddEquipments"
-              className={({ isActive }) =>
-                isActive
-                  ? "btn bg-[#cad2c5] font-bold text-[#2f3e46]"
-                  : "btn bg-base-100 font-bold"
-              }
-            >
-              Add Equipment
-            </NavLink>
-            <NavLink
               to="/Gallery"
               className={({ isActive }) =>
                 isActive
@@ -80,7 +65,7 @@ const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">BistroBoard</a>
+        <a className="btn btn-ghost text-white text-xl">BistroBoard</a>
         <ThemeToggle></ThemeToggle>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -141,7 +126,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="font-semibold text-[#42535b] menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="font-semibold  menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <Link to="/addMenu">Add Menu</Link>

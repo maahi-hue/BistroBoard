@@ -11,10 +11,9 @@ const AddMenu = () => {
     e.preventDefault();
     const form = e.target;
 
-    const name = form.name.value;
-    const description = form.description.value;
+    const name = form.name.value.trim();
+    const description = form.description.value.trim();
     const price = parseFloat(form.price.value);
-    const image = form.image.value;
     const userEmail = user.email;
     const userName = user.displayName || user.email.split("@")[0];
 
@@ -22,13 +21,13 @@ const AddMenu = () => {
       name,
       description,
       price,
-      image,
       userEmail,
       userName,
     };
 
     try {
-      await axiosSecure.post(`/addMenu`, formData);
+      const response = await axiosSecure.post(`/addMenu`, formData);
+      // console.log("Response:", response);
       Swal.fire({
         icon: "success",
         title: "Menu Added Successfully",
@@ -37,7 +36,7 @@ const AddMenu = () => {
       });
       form.reset();
     } catch (err) {
-      console.error(err);
+      // console.error("Error adding menu item:", err);
       Swal.fire({
         icon: "error",
         title: "Failed to Add Menu",
@@ -52,50 +51,48 @@ const AddMenu = () => {
       <h1 className="text-3xl font-bold text-center mb-6">Add New Menu Item</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="md:flex gap-6 w-10/12 mx-auto">
-          <div className="space-y-3 w-full">
-            <label className="input input-bordered flex items-center gap-2">
-              Food Name
-              <input
-                type="text"
-                name="name"
-                className="grow rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                placeholder="Pizza"
-                required
-              />
-            </label>
-
-            <label className="input input-bordered flex items-center gap-2">
-              Food Description
-              <input
-                type="text"
-                name="description"
-                className="grow rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                placeholder="Delicious cheese pizza"
-                required
-              />
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <label className="input input-bordered flex mx-auto items-center gap-2 w-10/12 mt-3">
-            Price
+        <div className="space-y-4">
+          <label className="block">
+            <span className="font-medium">Food Name</span>
             <input
               type="text"
+              name="name"
+              className="input input-bordered w-full mt-1 rounded-md"
+              placeholder="Pizza"
+              required
+            />
+          </label>
+
+          <label className="block">
+            <span className="font-medium">Food Description</span>
+            <textarea
+              name="description"
+              className="textarea textarea-bordered w-full mt-1 rounded-md"
+              placeholder="Delicious cheese pizza"
+              rows="3"
+              required
+            ></textarea>
+          </label>
+
+          <label className="block">
+            <span className="font-medium">Price (TK)</span>
+            <input
+              type="number"
+              step="0.01"
               name="price"
-              className="grow rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-indigo-600"
+              className="input input-bordered w-full mt-1 rounded-md"
               placeholder="12.99"
               required
             />
           </label>
         </div>
 
-        <input
+        <button
           type="submit"
-          value="Add Menu"
-          className="btn my-6 block mx-auto w-10/12 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold rounded-full"
-        />
+          className="btn mt-6 block mx-auto w-full font-bold rounded hover:bg-[#354f52] hover:text-[#cad2c5]"
+        >
+          Add Menu
+        </button>
       </form>
     </div>
   );
