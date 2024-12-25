@@ -54,19 +54,19 @@ const MyFoods = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead>
                   <tr>
-                    <th className="py-3.5 px-4 text-sm font-normal text-left text-gray-500">
+                    <th className="py-3.5 px-4 text-sm font-normal text-left ">
                       Food Name
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-normal text-left ">
                       Food Category
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-normal text-left ">
                       Price
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-normal text-left ">
                       Quantity
                     </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-left text-gray-500">
+                    <th className="px-4 py-3.5 text-sm font-normal text-left ">
                       Actions
                     </th>
                   </tr>
@@ -74,13 +74,13 @@ const MyFoods = () => {
                 <tbody className=" divide-y divide-gray-200">
                   {foods.map((food) => (
                     <tr key={food._id}>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm  whitespace-nowrap">
                         {food.name}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm  whitespace-nowrap">
                         {food.category}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm  whitespace-nowrap">
                         {food.price} TK
                       </td>
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -90,7 +90,7 @@ const MyFoods = () => {
                         <div className="flex items-center gap-x-6">
                           <button
                             onClick={() => setId(food._id)}
-                            className="text-gray-500 hover:text-red-500 focus:outline-none"
+                            className=" hover:text-red-500 focus:outline-none"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +110,7 @@ const MyFoods = () => {
 
                           <Link
                             to={`/update/${food._id}`}
-                            className="text-gray-500 hover:text-yellow-500 focus:outline-none"
+                            className=" hover:text-yellow-500 focus:outline-none"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

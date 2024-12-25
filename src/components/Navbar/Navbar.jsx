@@ -144,13 +144,20 @@ const Navbar = () => {
               className="font-semibold text-[#42535b] menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/myFoods" className="justify-between">
-                  My Foods
-                </Link>
+                <Link to="/addMenu">Add Menu</Link>
+              </li>
+              <li>
+                <Link to="/addOffer">Add Special Offer</Link>
               </li>
               <li>
                 <Link to="/AddFood">Add Food</Link>
               </li>
+              <li>
+                <Link to="/myFoods" className="justify-between">
+                  My Foods
+                </Link>
+              </li>
+
               <li>
                 <Link to="/myOrders">My Orders</Link>
               </li>

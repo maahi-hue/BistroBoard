@@ -67,16 +67,16 @@ const MyOrders = () => {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead>
                   <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase">
+                    <th className="px-4 py-3 text-left text-sm font-medium  uppercase">
                       Name
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase">
+                    <th className="px-4 py-3 text-left text-sm font-medium  uppercase">
                       Date
                     </th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-gray-500 uppercase">
+                    <th className="px-4 py-3 text-left text-sm font-medium  uppercase">
                       Price
                     </th>
-                    <th className="px-4 py-3 text-center text-sm font-medium text-gray-500 uppercase">
+                    <th className="px-4 py-3 text-center text-sm font-medium  uppercase">
                       Actions
                     </th>
                   </tr>
@@ -84,19 +84,19 @@ const MyOrders = () => {
                 <tbody className="divide-y divide-gray-200">
                   {orders.map((order) => (
                     <tr key={order._id}>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm  whitespace-nowrap">
                         {order.foodName}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm  whitespace-nowrap">
                         {order.formattedDate}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm  whitespace-nowrap">
                         {order.formattedPrice}
                       </td>
                       <td className="px-4 py-4 text-center whitespace-nowrap">
                         <button
                           onClick={() => setId(order._id)}
-                          className="text-gray-500 hover:text-red-500 focus:outline-none"
+                          className=" hover:text-red-500 focus:outline-none"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

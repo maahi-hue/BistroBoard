@@ -18,6 +18,8 @@ import SingleFood from "./components/SingleFood/SingleFood.jsx";
 import FoodPurchase from "./components/FoodPurchase/FoodPurchase.jsx";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import ThemeProvider from "./components/ThemeProvider/ThemeProvider.jsx";
+import AddMenu from "./components/AddMenu/AddMenu.jsx";
+import AddSpecialOffers from "./components/AddSpecialOffers/AddSpecialOffers.jsx";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
             <MyOrders></MyOrders>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/addMenu",
+        element: <AddMenu></AddMenu>,
+      },
+      {
+        path: "/addOffer",
+        element: <AddSpecialOffers></AddSpecialOffers>,
       },
       {
         path: "/update/:id",

@@ -1,4 +1,6 @@
 import Carousel from "../Carousel/Carousel";
+import Menu from "../Menu/Menu";
+import SpecialOffers from "../SpecialOffers/SpecialOffers";
 import TopSellingFoods from "../TopSellingFoods/TopSellingFoods";
 
 const Home = () => {
@@ -6,6 +8,8 @@ const Home = () => {
     <div>
       <Carousel></Carousel>
       <TopSellingFoods></TopSellingFoods>
+      <Menu></Menu>
+      <SpecialOffers></SpecialOffers>
     </div>
   );
 };
