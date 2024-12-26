@@ -6,7 +6,7 @@ The purpose of this project is to create a functional and visually appealing res
 
 ## Live URL
 
-[Visit the Live Website]: https://assignment-11-f04f9.web.app/
+[Visit the Live Website]: https://assignment-11-f04f9.web.app
 
 ## Features
 

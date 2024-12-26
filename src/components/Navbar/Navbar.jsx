@@ -104,7 +104,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {!user && (
-          <li>
+          <li className="text-white">
             <NavLink to="/login">Login</NavLink>
           </li>
         )}

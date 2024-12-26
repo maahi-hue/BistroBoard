@@ -17,7 +17,7 @@ const MyFoods = () => {
 
   const fetchAllFoods = async () => {
     try {
-      const { data } = await axiosSecure.get(`/foods/${user?.email}`);
+      const { data } = await axiosSecure.get(`foods/${user?.email}`);
       setFoods(data);
     } catch (err) {
       // console.error("Error fetching foods:", err);
