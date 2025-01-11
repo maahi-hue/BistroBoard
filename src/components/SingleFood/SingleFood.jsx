@@ -41,19 +41,19 @@ const SingleFood = () => {
   }
 
   return (
-    <div className="my-12 ">
-      <section className="flex flex-row p-8 mx-auto bg-white rounded-md shadow-md w-2/4 items-center justify-center gap-6">
-        <div className="w-3/1">
+    <div className="my-12 px-4">
+      <section className="flex flex-col md:flex-row md:p-8 mx-auto bg-white rounded-md shadow-md w-full md:w-3/4 items-center gap-6">
+        <div className="w-full md:w-1/2">
           <h2 className="text-xl font-bold text-gray-800">{food.name}</h2>
           {food.image && (
             <img
               src={food.image}
               alt={food.name}
-              className="w-full h-32 object-cover rounded-md my-4"
+              className="w-full h-48 md:h-64 object-cover rounded-md my-4"
             />
           )}
         </div>
-        <div className="mt-4 w-3/1">
+        <div className="w-full md:w-1/2">
           <p>
             <strong>Price:</strong> {food.price} TK
           </p>
@@ -69,13 +69,13 @@ const SingleFood = () => {
           <p>
             <strong>Purchase Count:</strong> {food.purchase_count || 0}
           </p>
+          <button
+            onClick={handlePurchaseRedirect}
+            className="w-full px-4 py-2 mt-6 btn hover:bg-[#354f52] hover:text-[#cad2c5] font-bold rounded"
+          >
+            Purchase
+          </button>
         </div>
-        <button
-          onClick={handlePurchaseRedirect}
-          className="w-3/1 px-4 py-2 mt-6 btn hover:bg-[#354f52] hover:text-[#cad2c5] font-bold rounded"
-        >
-          Purchase
-        </button>
       </section>
     </div>
   );

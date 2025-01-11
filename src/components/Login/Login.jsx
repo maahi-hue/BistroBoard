@@ -36,16 +36,12 @@ const Login = () => {
   const googleLoginHandler = async () => {
     try {
       await handleGoogleLogin();
-
-      // Success notification
       Swal.fire({
         icon: "success",
         title: "Login Successful!",
         timer: 2000,
         showConfirmButton: false,
       });
-
-      // Navigate to previous or home
       navigate(location.state?.from || "/");
     } catch (err) {
       const errorMessage =
@@ -87,7 +83,7 @@ const Login = () => {
         </label>
         <button
           type="submit"
-          className="btn bg-base-100  hover:bg-[#354f52] hover:text-[#cad2c5] font-bold w-full mt-2"
+          className="btn bg-base-100 hover:bg-[#d68853] hover:text-[#1c1858] font-bold w-full mt-2"
         >
           Login
         </button>

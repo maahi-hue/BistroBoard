@@ -24,7 +24,7 @@ const Menu = () => {
             className="flex items-center border-b border-gray-300 pb-4"
           >
             <div className="flex-grow">
-              <h2 className="text-lg font-semibold hover:text-indigo-600 transition-colors">
+              <h2 className="text-lg font-semibold hover:text-[#1c1858] transition-colors">
                 {item.name}
               </h2>
               <p className="text-gray-600 text-sm">{item.description}</p>

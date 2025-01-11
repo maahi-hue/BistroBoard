@@ -20,6 +20,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 import ThemeProvider from "./components/ThemeProvider/ThemeProvider.jsx";
 import AddMenu from "./components/AddMenu/AddMenu.jsx";
 import AddSpecialOffers from "./components/AddSpecialOffers/AddSpecialOffers.jsx";
+import ContactUs from "./components/ContactUs/ContactUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
       },
     ],
   },

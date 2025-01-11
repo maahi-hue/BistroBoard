@@ -29,12 +29,12 @@ const AllFoods = () => {
               aria-label="Enter Food Name"
             />
 
-            <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+            <button className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-[#141136] rounded-md hover:bg-[#d68853] hover:text-[#1c1858] focus:bg-[#141136] focus:outline-none">
               Search
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 ">
+        <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-3 lg:grid-cols-4 ">
           {foods.map((food) => (
             <FoodCard key={food._id} food={food}></FoodCard>
           ))}

@@ -18,7 +18,7 @@ const MyOrders = () => {
   const fetchAllOrders = async () => {
     try {
       const { data } = await axiosSecure.get(`/orders/${user?.email}`);
-      console.log("Fetched orders:", data);
+      // console.log("Fetched orders:", data);
 
       const formattedData = data.map((order) => ({
         ...order,

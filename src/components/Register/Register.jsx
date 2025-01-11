@@ -13,8 +13,6 @@ const Register = () => {
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    // Password validations with SweetAlert
     if (password.length < 6) {
       Swal.fire({
         icon: "error",
@@ -146,7 +144,7 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="btn bg-base-100 hover:bg-[#354f52] hover:text-[#cad2c5] font-bold w-full mt-2"
+          className="btn bg-base-100 hover:bg-[#d68853] hover:text-[#1c1858] font-bold w-full mt-2"
         >
           Register
         </button>

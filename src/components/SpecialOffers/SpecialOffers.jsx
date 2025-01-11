@@ -35,9 +35,7 @@ const SpecialOffers = () => {
             ></div>
 
             <div className="text-center">
-              <h2 className="text-xl font-semibold hover:text-indigo-600 transition-colors mb-2">
-                {offer.name}
-              </h2>
+              <h2 className="text-xl font-semibold mb-2">{offer.name}</h2>
               <p className="text-sm mb-4">{offer.description}</p>
               <div className="flex justify-center items-center space-x-4">
                 <p className="text-lg font-bold line-through text-gray-500">
